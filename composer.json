@@ -1,0 +1,29 @@
+{
+    "name": "everlutionsk/navigation",
+    "description": "Navigation builder library",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Everlution\\Navigation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Everlution\\Navigation\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Barlog",
+            "email": "ivan.barlog@everlution.sk"
+        },
+        {
+            "name": "Miroslav Demovic",
+            "email": "miroslav.demovic@everlution.sk"
+        }
+    ]
+}
