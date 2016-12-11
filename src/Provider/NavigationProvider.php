@@ -19,12 +19,21 @@ abstract class NavigationProvider implements Provider
             return;
         }
 
+        $this->hookItems($navigation);
+    }
+
+    abstract protected function hook(NavigationItem &$item);
+
+    /**
+     * @param Navigation $navigation
+     * @return Navigation
+     */
+    protected function hookItems(Navigation &$navigation): Navigation
+    {
         $this->hook($navigation);
 
         foreach ($navigation->getChildren() as $child) {
             $this->hook($child);
         }
     }
-
-    abstract protected function hook(NavigationItem &$item);
 }

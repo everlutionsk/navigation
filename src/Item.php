@@ -11,4 +11,6 @@ namespace Everlution\Navigation;
 interface Item
 {
     public function getChildren(): array;
+
+    public function addChild(Item $item);
 }

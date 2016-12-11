@@ -36,11 +36,17 @@ class NavigationItem implements Item
     }
 
     /**
-     * @param NavigationItem $item
+     * @param Item $item
      * @return NavigationItem
      */
-    public function addChild(NavigationItem $item) : NavigationItem
+    public function addChild(Item $item) : NavigationItem
     {
+        if (!$item instanceof NavigationItem) {
+            throw new \InvalidArgumentException(
+                sprintf("\$item must be instance of %s'", NavigationItem::class)
+            );
+        }
+
         $this->children[] = new NavigationItem($item->getUri(), $item->getLabel(), $this, $item->getChildren());
 
         return $this;
