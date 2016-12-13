@@ -43,9 +43,14 @@ class BasicNavigation implements Navigation
 
     /**
      * @return NavigationItem
+     * @throws CurrentItemNotMatchedException
      */
     public function getCurrent(): NavigationItem
     {
+        if (!$this->current instanceof NavigationItem) {
+            throw new CurrentItemNotMatchedException();
+        }
+
         return $this->current;
     }
 
