@@ -15,7 +15,7 @@ class Navigation extends NavigationItem
         parent::__construct($identifier, $label);
     }
 
-    public function getSlug(): string
+    public function getIdentifier(): string
     {
         return $this->getUri();
     }

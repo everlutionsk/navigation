@@ -13,22 +13,30 @@ use Everlution\Navigation\NavigationItem;
  */
 abstract class NavigationProvider implements Provider
 {
+    /**
+     * @param Navigation $navigation
+     * @return void
+     */
     public function accept(Navigation &$navigation)
     {
-        if ($navigation->getSlug() === $this->getName()) {
+        if ($navigation->getIdentifier() === $this->getName()) {
             return;
         }
 
         $this->hookItems($navigation);
     }
 
+    /**
+     * @param NavigationItem $item
+     * @return void
+     */
     abstract protected function hook(NavigationItem &$item);
 
     /**
      * @param Navigation $navigation
-     * @return Navigation
+     * @return void
      */
-    protected function hookItems(Navigation &$navigation): Navigation
+    protected function hookItems(Navigation &$navigation)
     {
         $this->hook($navigation);
 

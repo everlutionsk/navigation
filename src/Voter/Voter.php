@@ -2,7 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Voter;
+
+use Everlution\Navigation\NavigationItem;
 
 /**
  * Interface Voter.

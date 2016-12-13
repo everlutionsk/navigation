@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Voter;
 
 /**
  * Class VoterAlreadyRegisteredException.

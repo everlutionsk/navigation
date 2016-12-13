@@ -16,18 +16,13 @@ class NavigationItem implements Item
     private $label;
     /** @var Item */
     private $parent;
-    /** @var bool */
-    private $visibility;
     /** @var NavigationItem[] */
     private $children = [];
-
 
     public function __construct(string $uri, string $label, Item $parent = null, array $children = [])
     {
         $this->uri = $uri;
         $this->label = $label;
-        $this->visibility = true;
-
         $this->parent = $parent;
 
         foreach ($children as $child) {
@@ -43,7 +38,7 @@ class NavigationItem implements Item
     {
         if (!$item instanceof NavigationItem) {
             throw new \InvalidArgumentException(
-                sprintf("\$item must be instance of %s'", NavigationItem::class)
+                sprintf("Item must be instance of %s'", NavigationItem::class)
             );
         }
 
@@ -82,33 +77,5 @@ class NavigationItem implements Item
     public function getParent(): Item
     {
         return $this->parent;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isVisible(): bool
-    {
-        return $this->visibility;
-    }
-
-    /**
-     * @return NavigationItem
-     */
-    public function setVisible(): NavigationItem
-    {
-        $this->visibility = true;
-
-        return $this;
-    }
-
-    /**
-     * @return NavigationItem
-     */
-    public function setHidden(): NavigationItem
-    {
-        $this->visibility = false;
-
-        return $this;
     }
 }
