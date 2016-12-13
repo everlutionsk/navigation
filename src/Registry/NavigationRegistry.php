@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Register;
+namespace Everlution\Navigation\Registry;
 
 use Everlution\Navigation\RootNavigationItem;
 
 /**
- * Class NavigationRegister.
+ * Class NavigationRegistry.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class NavigationRegister extends ProviderRegister
+class NavigationRegistry extends ProviderRegistry
 {
     /**
      * @param string $slug

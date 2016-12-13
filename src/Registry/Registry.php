@@ -2,19 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Register;
+namespace Everlution\Navigation\Registry;
 
 use Everlution\Navigation\Provider\Provider;
 
 /**
- * Interface Register.
+ * Interface Registry.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-interface Register
+interface Registry
 {
     /**
      * @param Provider $provider
-     * @return Register
+     * @return Registry
      */
-    public function register(Provider $provider): Register;
+    public function register(Provider $provider): Registry;
 }

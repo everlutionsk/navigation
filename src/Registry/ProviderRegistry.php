@@ -2,25 +2,25 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Register;
+namespace Everlution\Navigation\Registry;
 
 use Everlution\Navigation\Provider\Provider;
 
 /**
- * Class ProviderRegister.
+ * Class ProviderRegistry.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class ProviderRegister implements Register
+class ProviderRegistry implements Registry
 {
     /** @var Provider[] */
     protected $register = [];
 
     /**
      * @param Provider $provider
-     * @return Register
+     * @return Registry
      * @throws ProviderAlreadyRegisteredException
      */
-    public function register(Provider $provider): Register
+    public function register(Provider $provider): Registry
     {
         if (array_key_exists($provider->getName(), $this->register)) {
             throw new ProviderAlreadyRegisteredException($provider);

@@ -2,24 +2,24 @@
 
 declare(strict_types = 1);
 
-namespace Tests\Everlution\Navigation\Register;
+namespace Tests\Everlution\Navigation\Registry;
 
 use Everlution\Navigation\Provider\Provider;
-use Everlution\Navigation\Register\ProviderAlreadyRegisteredException;
-use Everlution\Navigation\Register\ProviderRegister;
+use Everlution\Navigation\Registry\ProviderAlreadyRegisteredException;
+use Everlution\Navigation\Registry\ProviderRegistry;
 
 /**
  * Class ProviderRegisterTest.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class ProviderRegisterTest extends \PHPUnit_Framework_TestCase
+class ProviderRegistryTest extends \PHPUnit_Framework_TestCase
 {
     const FIRST = 'first';
     const SECOND = 'second';
 
     public function testRegister()
     {
-        $register = new ProviderRegister();
+        $register = new ProviderRegistry();
 
         $firstProvider = $this->createMock(Provider::class);
         $firstProvider->method('getName')->willReturn(self::FIRST);

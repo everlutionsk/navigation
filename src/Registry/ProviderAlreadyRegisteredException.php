@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Register;
+namespace Everlution\Navigation\Registry;
 
 use Everlution\Navigation\Provider\Provider;
 
