@@ -8,13 +8,16 @@ namespace Everlution\Navigation;
  * Interface Navigation.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class Navigation extends NavigationItem
+class RootNavigationItem extends NavigationItem
 {
     public function __construct(string $identifier, string $label)
     {
         parent::__construct($identifier, $label);
     }
 
+    /**
+     * @return string
+     */
     public function getIdentifier(): string
     {
         return $this->getUri();

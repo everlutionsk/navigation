@@ -6,12 +6,13 @@ namespace Everlution\Navigation\Matcher;
 
 use Everlution\Navigation\Voter\Voter;
 use Everlution\Navigation\Voter\VoterAlreadyRegisteredException;
+use Everlution\Navigation\Voter\VoterContainer as VoterContainerInterface;
 
 /**
  * Class VoterContainer.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class VoterContainer implements \Everlution\Navigation\Voter\VoterContainer
+class VoterContainer implements VoterContainerInterface
 {
     /** @var Voter[] */
     protected $voters = [];

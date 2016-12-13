@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Provider;
 
-use Everlution\Navigation\Navigation;
+use Everlution\Navigation\RootNavigationItem;
 
 /**
  * Interface Provider.
@@ -12,7 +12,14 @@ use Everlution\Navigation\Navigation;
  */
 interface Provider
 {
+    /**
+     * @return string
+     */
     public function getName(): string;
 
-    public function accept(Navigation &$navigation);
+    /**
+     * @param RootNavigationItem $navigation
+     * @return void
+     */
+    public function accept(RootNavigationItem &$navigation);
 }

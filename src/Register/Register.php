@@ -12,5 +12,9 @@ use Everlution\Navigation\Provider\Provider;
  */
 interface Register
 {
+    /**
+     * @param Provider $provider
+     * @return Register
+     */
     public function register(Provider $provider): Register;
 }

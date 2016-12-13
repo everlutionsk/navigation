@@ -10,7 +10,14 @@ namespace Everlution\Navigation;
  */
 interface Item
 {
+    /**
+     * @return array
+     */
     public function getChildren(): array;
 
+    /**
+     * @param Item $item
+     * @return Item
+     */
     public function addChild(Item $item);
 }

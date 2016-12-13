@@ -2,28 +2,28 @@
 
 declare(strict_types = 1);
 
-namespace Tests\Everlution\Navigation\Helper;
+namespace Tests\Everlution\Navigation\Navigation;
 
-use Everlution\Navigation\Helper\NavigationHelper;
+use Everlution\Navigation\Navigation\BasicNavigation;
 use Everlution\Navigation\Matcher\Matcher;
 use Everlution\Navigation\Matcher\NavigationItemMatcher;
-use Everlution\Navigation\Navigation;
+use Everlution\Navigation\RootNavigationItem;
 use Everlution\Navigation\NavigationItem;
 use Everlution\Navigation\Voter\Voter;
 
 /**
- * Class MatcherTest.
+ * Class BaseNavigationTest.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class NavigationHelperTest extends \PHPUnit_Framework_TestCase
+class BaseNavigationTest extends \PHPUnit_Framework_TestCase
 {
     const CURRENT = 'current';
 
     /** @var Matcher */
     private $matcher;
-    /** @var Navigation */
+    /** @var RootNavigationItem */
     private $navigation;
-    /** @var NavigationHelper */
+    /** @var BasicNavigation */
     private $helper;
 
     private $hierarchy = [
@@ -54,7 +54,7 @@ class NavigationHelperTest extends \PHPUnit_Framework_TestCase
         $this->matcher->addVoter($voterMock);
 
         $this->navigation = $this->buildNavigation();
-        $this->helper = new NavigationHelper($this->navigation, $this->matcher);
+        $this->helper = new BasicNavigation($this->navigation, $this->matcher);
     }
 
     public function testGetBreadcrumbs()
@@ -100,7 +100,7 @@ class NavigationHelperTest extends \PHPUnit_Framework_TestCase
 
     private function buildNavigation()
     {
-        $navigation = new Navigation('test', 'Test');
+        $navigation = new RootNavigationItem('test', 'Test');
 
         foreach ($this->hierarchy as $item => $children) {
             $navigation->addChild($this->getItem($item, $children));

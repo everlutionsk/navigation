@@ -2,26 +2,26 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Helper;
+namespace Everlution\Navigation\Navigation;
 
 use Everlution\Navigation\Matcher\Matcher;
-use Everlution\Navigation\Navigation;
+use Everlution\Navigation\RootNavigationItem;
 use Everlution\Navigation\NavigationItem;
 
 /**
- * Class NavigationHelper.
+ * Class BasicNavigation.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class NavigationHelper
+class BasicNavigation implements Navigation
 {
     /** @var NavigationItem[] */
     private $ancestors = [];
     /** @var NavigationItem */
     private $current = null;
 
-    public function __construct(Navigation $navigation, Matcher $matcher)
+    public function __construct(RootNavigationItem $root, Matcher $matcher)
     {
-        $this->process($navigation, $matcher);
+        $this->process($root, $matcher);
     }
 
     /**
@@ -57,7 +57,7 @@ class NavigationHelper
      */
     private function process(NavigationItem &$item, Matcher &$matcher, int $depth = -1)
     {
-        if (!$item instanceof Navigation) {
+        if (!$item instanceof RootNavigationItem) {
             $this->ancestors[$depth] = $item;
         }
 

@@ -15,7 +15,12 @@ class ProviderRegister implements Register
     /** @var Provider[] */
     protected $register = [];
 
-    public function register(Provider $provider) : Register
+    /**
+     * @param Provider $provider
+     * @return Register
+     * @throws ProviderAlreadyRegisteredException
+     */
+    public function register(Provider $provider): Register
     {
         if (array_key_exists($provider->getName(), $this->register)) {
             throw new ProviderAlreadyRegisteredException($provider);

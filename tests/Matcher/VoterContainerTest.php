@@ -16,7 +16,9 @@ class VoterContainerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var VoterContainer */
     private $container;
+    /** @var Voter */
     private $voter1;
+    /** @var Voter */
     private $voter2;
 
     public function setUp()

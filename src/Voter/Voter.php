@@ -12,5 +12,9 @@ use Everlution\Navigation\NavigationItem;
  */
 interface Voter
 {
+    /**
+     * @param NavigationItem $item
+     * @return bool
+     */
     public function match(NavigationItem $item): bool;
 }
