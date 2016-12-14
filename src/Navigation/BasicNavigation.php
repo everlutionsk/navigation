@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Everlution\Navigation\Navigation;
 
 use Everlution\Navigation\Matcher\Matcher;
-use Everlution\Navigation\RootNavigationItem;
 use Everlution\Navigation\NavigationItem;
+use Everlution\Navigation\RootNavigationItem;
 
 /**
  * Class BasicNavigation.
@@ -30,7 +30,10 @@ class BasicNavigation implements Navigation
      */
     public function isAncestor(NavigationItem $item): bool
     {
-        return in_array($item, $this->ancestors);
+        $ancestors = $this->ancestors;
+        array_pop($ancestors);
+
+        return in_array($item, $ancestors);
     }
 
     /**
@@ -60,15 +63,13 @@ class BasicNavigation implements Navigation
      * @param int $depth
      * @return NavigationItem|null
      */
-    private function process(NavigationItem &$item, Matcher &$matcher, int $depth = -1)
+    private function process(NavigationItem &$item, Matcher &$matcher, int $depth = 0)
     {
-        if (!$item instanceof RootNavigationItem) {
-            $this->ancestors[$depth] = $item;
-        }
+        $this->ancestors[$depth] = $item;
 
         if ($matcher->isCurrent($item)) {
             $this->current = $item;
-            unset($this->ancestors[$depth]);
+            array_shift($this->ancestors);
 
             return $item;
         }

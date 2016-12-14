@@ -59,7 +59,7 @@ class BaseNavigationTest extends \PHPUnit_Framework_TestCase
 
     public function testGetBreadcrumbs()
     {
-        $this->assertCount(2, $this->helper->getBreadcrumbs());
+        $this->assertCount(3, $this->helper->getBreadcrumbs());
     }
 
     public function testGetCurrent()

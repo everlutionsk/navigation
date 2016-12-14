@@ -34,7 +34,7 @@ class NavigationItem implements Item
      * @param Item $item
      * @return NavigationItem
      */
-    public function addChild(Item $item) : NavigationItem
+    public function addChild(Item $item): NavigationItem
     {
         if (!$item instanceof NavigationItem) {
             throw new \InvalidArgumentException(
@@ -42,7 +42,7 @@ class NavigationItem implements Item
             );
         }
 
-        $this->children[] = new NavigationItem($item->getUri(), $item->getLabel(), $this, $item->getChildren());
+        $this->children[] = $item->setParent($this);
 
         return $this;
     }
@@ -69,6 +69,17 @@ class NavigationItem implements Item
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    /**
+     * @param $parent
+     * @return NavigationItem
+     */
+    public function setParent($parent): NavigationItem
+    {
+        $this->parent = $parent;
+
+        return $this;
     }
 
     /**
