@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Everlution\Navigation\Navigation;
 
 use Everlution\Navigation\Matcher\Matcher;
-use Everlution\Navigation\RootNavigationItem;
 use Everlution\Navigation\NavigationItem;
+use Everlution\Navigation\RootNavigationItem;
 
 /**
  * Class BasicNavigation.
