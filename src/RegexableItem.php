@@ -5,9 +5,10 @@ declare(strict_types = 1);
 namespace Everlution\Navigation;
 
 /**
- * Class HiddenNavigationItem.
+ * Class RegexNavigationItem.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class HiddenNavigationItem extends NavigationItem
+interface RegexableItem
 {
+    public function getPattern(): string;
 }

@@ -15,7 +15,7 @@ use Everlution\Navigation\Voter\VoterContainer as VoterContainerInterface;
 class VoterContainer implements VoterContainerInterface
 {
     /** @var Voter[] */
-    protected $voters = [];
+    private $voters = [];
 
     /**
      * @param Voter $voter
@@ -31,5 +31,10 @@ class VoterContainer implements VoterContainerInterface
         $this->voters[] = $voter;
 
         return $this;
+    }
+
+    protected function getVoters()
+    {
+        return $this->voters;
     }
 }

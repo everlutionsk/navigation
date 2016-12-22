@@ -5,9 +5,10 @@ declare(strict_types = 1);
 namespace Everlution\Navigation;
 
 /**
- * Class HiddenNavigationItem.
+ * Class PrefixedNavigationItem.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class HiddenNavigationItem extends NavigationItem
+interface PrefixableItem
 {
+    public function getPrefix();
 }

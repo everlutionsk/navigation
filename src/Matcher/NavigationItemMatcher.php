@@ -18,7 +18,7 @@ class NavigationItemMatcher extends VoterContainer implements Matcher
      */
     public function isCurrent(NavigationItem $item): bool
     {
-        foreach ($this->voters as $voter) {
+        foreach ($this->getVoters() as $voter) {
             if ($voter->match($item)) {
                 return true;
             }

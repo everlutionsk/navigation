@@ -4,12 +4,17 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation;
 
+use Everlution\Navigation\Extension\ManualMatch;
+use Everlution\Navigation\Extension\ManualMatchExtension;
+
 /**
  * Class NavigationItem.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class NavigationItem implements Item
+class NavigationItem implements Item, ManualMatch
 {
+    use ManualMatchExtension;
+
     /** @var string */
     private $uri;
     /** @var string */
