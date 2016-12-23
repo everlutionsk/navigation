@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Provider;
 
+use Everlution\Navigation\Item;
 use Everlution\Navigation\RootNavigationItem;
-use Everlution\Navigation\NavigationItem;
 
 /**
  * Class NavigationProvider.
@@ -27,16 +27,16 @@ abstract class NavigationProvider implements Provider
     }
 
     /**
-     * @param NavigationItem $item
+     * @param Item $item
      * @return void
      */
-    abstract protected function hook(NavigationItem &$item);
+    abstract protected function hook(Item &$item);
 
     /**
-     * @param RootNavigationItem $navigation
+     * @param Item $navigation
      * @return void
      */
-    protected function hookItems(RootNavigationItem &$navigation)
+    protected function hookItems(Item &$navigation)
     {
         $this->hook($navigation);
 

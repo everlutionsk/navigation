@@ -6,7 +6,7 @@ namespace Tests\Everlution\Navigation\Matcher;
 
 use Everlution\Navigation\Matcher\VoterContainer;
 use Everlution\Navigation\Voter\Voter;
-use Everlution\Navigation\Voter\VoterAlreadyRegisteredException;
+use Everlution\Navigation\Matcher\VoterAlreadyRegisteredException;
 
 /**
  * Class VoterContainerTest.

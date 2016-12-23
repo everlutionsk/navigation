@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Voter;
 
+use Everlution\Navigation\Matcher\VoterAlreadyRegisteredException;
+
 /**
  * Interface VoterContainer.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>

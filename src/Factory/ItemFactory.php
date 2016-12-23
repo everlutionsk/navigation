@@ -14,11 +14,6 @@ use Everlution\Navigation\NavigationItem;
 interface ItemFactory
 {
     /**
-     * @param NavigationItem $navigation
-     */
-    public function build(NavigationItem &$navigation);
-
-    /**
      * @param array $item
      * @return Item
      */

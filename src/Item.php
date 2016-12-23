@@ -11,6 +11,11 @@ namespace Everlution\Navigation;
 interface Item
 {
     /**
+     * @return string
+     */
+    public function getLabel(): string;
+
+    /**
      * @return array
      */
     public function getChildren(): array;
@@ -20,4 +25,15 @@ interface Item
      * @return Item
      */
     public function addChild(Item $item);
+
+    /**
+     * @param Item $parent
+     * @return Item
+     */
+    public function setParent(Item $parent);
+
+    /**
+     * @return Item|null
+     */
+    public function getParent();
 }

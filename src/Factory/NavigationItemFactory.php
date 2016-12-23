@@ -4,33 +4,40 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Factory;
 
+use Everlution\Navigation\Factory\Build\ItemConfig;
 use Everlution\Navigation\Item;
+use Everlution\Navigation\MatchableItem;
 use Everlution\Navigation\NavigationItem;
 use Everlution\Navigation\Factory\Build\UnsupportedItemClassException;
-use Everlution\Navigation\Factory\Build\Config;
+use Everlution\Navigation\RootNavigationItem;
+use Everlution\Navigation\Factory\Build\Hydrator\Item as HydratorItem;
+use Everlution\Navigation\Voter\Match;
 
 /**
  * Class NavigationItemFactory.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-abstract class NavigationItemFactory implements ItemFactory
+abstract class NavigationItemFactory extends HydratorContainer implements ItemFactory
 {
     const OPTIONS_ITEMS = 'items';
 
-    /** @var Config[] */
-    private $hydrators = [];
+    /** @var PropertyFactory */
+    private $factory;
 
-    public function addHydrator(Config $config)
+    public function __construct(PropertyFactory $factory)
     {
-        $this->hydrators[] = $config;
+        $this->factory = $factory;
+    }
 
-        return $this;
+    public function addHydrator(ItemConfig $config)
+    {
+        return $this->add($config);
     }
 
     /**
-     * @param NavigationItem $navigation
+     * @param RootNavigationItem $navigation
      */
-    public function build(NavigationItem &$navigation)
+    public function build(RootNavigationItem &$navigation)
     {
         $data = $this->getData($navigation);
         foreach ($data[self::OPTIONS_ITEMS] as $item) {
@@ -46,9 +53,11 @@ abstract class NavigationItemFactory implements ItemFactory
     public function create(array $item): Item
     {
         $instance = null;
-        foreach ($this->hydrators as $hydrator) {
+        /** @var ItemConfig $hydrator */
+        foreach ($this->getHydrators() as $hydrator) {
             try {
                 $instance = $hydrator->toObject($item, $this);
+                $this->addMatchObjects($instance, $item);
             } catch (UnsupportedItemClassException $exception) {
                 continue;
             }
@@ -64,9 +73,13 @@ abstract class NavigationItemFactory implements ItemFactory
     public function flatten(NavigationItem $child): array
     {
         $items = [];
-        foreach ($this->hydrators as $hydrator) {
+        /** @var ItemConfig $hydrator */
+        foreach ($this->getHydrators() as $hydrator) {
             try {
-                $items[] = $hydrator->toArray($child, $this);
+                $item = $hydrator->toArray($child, $this);
+                $this->addMatchesConfig($item, $child);
+
+                $items[] = $item;
             } catch (UnsupportedItemClassException $exception) {
                 continue;
             }
@@ -76,8 +89,52 @@ abstract class NavigationItemFactory implements ItemFactory
     }
 
     /**
-     * @param NavigationItem $navigation
+     * @return PropertyFactory
+     */
+    protected function getFactory(): PropertyFactory
+    {
+        return $this->factory;
+    }
+
+    /**
+     * @param RootNavigationItem $navigation
      * @return array
      */
-    abstract protected function getData(NavigationItem &$navigation): array;
+    abstract protected function getData(RootNavigationItem &$navigation): array;
+
+    /**
+     * @param Item $item
+     * @param array $config
+     *
+     * @return void
+     */
+    private function addMatchObjects(Item &$item, array $config)
+    {
+        if (!$item instanceof MatchableItem) {
+            return;
+        }
+
+        foreach ($config[HydratorItem::OPTION_MATCHES] as $value) {
+            /** @var Match $match */
+            $match = $this->getFactory()->createProperty($value);
+            $item->addMatch($match);
+        }
+    }
+
+    /**
+     * @param array $config
+     * @param NavigationItem $item
+     *
+     * @return void
+     */
+    private function addMatchesConfig(array &$config, NavigationItem $item)
+    {
+        if (!$item instanceof MatchableItem) {
+            return;
+        }
+
+        foreach ($item->getMatches() as $match) {
+            $config[HydratorItem::OPTION_MATCHES][] = $this->getFactory()->flattenProperty($match);
+        }
+    }
 }

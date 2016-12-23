@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Voter;
 
-use Everlution\Navigation\NavigationItem;
-
 /**
  * Interface Voter.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
@@ -13,8 +11,9 @@ use Everlution\Navigation\NavigationItem;
 interface Voter
 {
     /**
-     * @param NavigationItem $item
+     * @param string $haystack
+     * @param Matchable $item
      * @return bool
      */
-    public function match(NavigationItem $item): bool;
+    public function match(string $haystack, Matchable &$item): bool;
 }

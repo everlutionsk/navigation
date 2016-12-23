@@ -4,26 +4,81 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Factory\Build;
 
-use Everlution\Navigation\Item;
-use Everlution\Navigation\Factory\ItemFactory;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class Config.
+ * Class NavigationItemConfig.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-interface Config
+abstract class Config
 {
+    const OPTION_CLASS = 'class';
+
+    /** @var OptionsResolver */
+    protected $resolver;
+    /** @var array */
+    protected $supportedClasses = [];
+
+    public function __construct()
+    {
+        $this->resolver = new OptionsResolver();
+
+        $this->resolver->setRequired([self::OPTION_CLASS]);
+        $this->resolver->setAllowedTypes(self::OPTION_CLASS, 'string');
+
+        $this->config();
+    }
+
     /**
-     * @param Item $item
-     * @param ItemFactory $factory
+     * @param string $className
+     * @param array $arguments
+     * @return mixed
+     */
+    abstract protected function getObject(string $className, array $arguments);
+
+    /**
+     * @param $object
      * @return array
      */
-    public function toArray(Item $item, ItemFactory $factory): array;
+    abstract protected function getArray($object): array;
 
     /**
      * @param array $config
-     * @param ItemFactory $factory
-     * @return Item
+     * @return array
      */
-    public function toObject(array $config, ItemFactory $factory): Item;
+    protected function resolve(array $config): array
+    {
+        return $this->resolver->resolve($config);
+    }
+
+    /**
+     * @param string $class
+     */
+    protected function checkIfSupport(string $class)
+    {
+        if (false === in_array($class, $this->supportedClasses)) {
+            throw new UnsupportedItemClassException($class, $this->supportedClasses);
+        }
+    }
+
+    /**
+     * Specifies additional options
+     * This method is called after initial OptionsResolver setup
+     * Use OptionsResolver within this method
+     *
+     * @return void
+     */
+    abstract protected function config();
+
+    /**
+     * @param array $config
+     * @return string
+     */
+    protected function popClassName(array $config): string
+    {
+        $class = $config[self::OPTION_CLASS];
+        unset($config[self::OPTION_CLASS]);
+
+        return $class;
+    }
 }

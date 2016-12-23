@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Matcher;
 
-use Everlution\Navigation\NavigationItem;
+use Everlution\Navigation\Item;
 
 /**
  * Class NavigationItemMatcher.
@@ -13,8 +13,8 @@ use Everlution\Navigation\NavigationItem;
 interface Matcher
 {
     /**
-     * @param NavigationItem $item
+     * @param Item $item
      * @return bool
      */
-    public function isCurrent(NavigationItem $item): bool;
+    public function isCurrent(Item $item): bool;
 }

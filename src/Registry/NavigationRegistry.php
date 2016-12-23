@@ -13,13 +13,12 @@ use Everlution\Navigation\RootNavigationItem;
 class NavigationRegistry extends ProviderRegistry
 {
     /**
-     * @param string $slug
-     * @param string $label
+     * @param string $identifier
      * @return RootNavigationItem
      */
-    public function getNavigation(string $slug, string $label)
+    public function getNavigation(string $identifier)
     {
-        $navigation = new RootNavigationItem($slug, $label);
+        $navigation = new RootNavigationItem($identifier);
 
         foreach ($this->register as $provider) {
             $provider->accept($navigation);

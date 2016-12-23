@@ -2,15 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace Everlution\Navigation\Extension;
+namespace Everlution\Navigation\Voter;
 
 /**
- * Interface ManualMatch.
+ * Interface Matchable.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-interface ManualMatch
+interface Matchable
 {
+    /**
+     * @return Match[]
+     */
     public function getMatches(): array;
-
-    public function setMatches(array $matches);
 }
