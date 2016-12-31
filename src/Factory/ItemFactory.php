@@ -6,6 +6,7 @@ namespace Everlution\Navigation\Factory;
 
 use Everlution\Navigation\Item;
 use Everlution\Navigation\NavigationItem;
+use Everlution\Navigation\RootNavigationItem;
 
 /**
  * Class NavigationItemFactory.
@@ -13,6 +14,12 @@ use Everlution\Navigation\NavigationItem;
  */
 interface ItemFactory
 {
+    /**
+     * @param array $data
+     * @return RootNavigationItem
+     */
+    public function build(array $data): RootNavigationItem;
+
     /**
      * @param array $item
      * @return Item

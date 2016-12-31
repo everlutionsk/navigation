@@ -21,13 +21,6 @@
     },
     "license": "MIT",
     "authors": [
-        {
-            "name": "Ivan Barlog",
-            "email": "ivan.barlog@everlution.sk"
-        },
-        {
-            "name": "Miroslav Demovic",
-            "email": "miroslav.demovic@everlution.sk"
-        }
+        {"name": "Ivan Barlog", "email": "ivan.barlog@everlution.sk"}
     ]
 }

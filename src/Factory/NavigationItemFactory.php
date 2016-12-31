@@ -17,7 +17,7 @@ use Everlution\Navigation\Voter\Match;
  * Class NavigationItemFactory.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-abstract class NavigationItemFactory extends HydratorContainer implements ItemFactory
+class NavigationItemFactory extends HydratorContainer implements ItemFactory
 {
     const OPTIONS_ITEMS = 'items';
 
@@ -35,15 +35,19 @@ abstract class NavigationItemFactory extends HydratorContainer implements ItemFa
     }
 
     /**
-     * @param RootNavigationItem $navigation
+     * @param array $data
+     * @return RootNavigationItem
      */
-    public function build(RootNavigationItem &$navigation)
+    public function build(array $data): RootNavigationItem
     {
-        $data = $this->getData($navigation);
+        $navigation = new RootNavigationItem();
+
         foreach ($data[self::OPTIONS_ITEMS] as $item) {
             $item = $this->create($item);
             $navigation->addChild($item);
         }
+
+        return $navigation;
     }
 
     /**
@@ -95,12 +99,6 @@ abstract class NavigationItemFactory extends HydratorContainer implements ItemFa
     {
         return $this->factory;
     }
-
-    /**
-     * @param RootNavigationItem $navigation
-     * @return array
-     */
-    abstract protected function getData(RootNavigationItem &$navigation): array;
 
     /**
      * @param Item $item

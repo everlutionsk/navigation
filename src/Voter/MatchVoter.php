@@ -18,8 +18,12 @@ abstract class MatchVoter implements Voter
     public function match(string $haystack, Matchable &$item): bool
     {
         foreach ($item->getMatches() as $match) {
-            if (null !== ($needle = $match->accept($this))) {
-                return $this->matches($haystack, $needle);
+            if (null === ($needle = $match->accept($this))) {
+                continue;
+            }
+
+            if ($this->matches($haystack, $needle)) {
+                return true;
             }
         }
 

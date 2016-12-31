@@ -13,7 +13,7 @@ use Everlution\Navigation\Provider\Provider;
 class ProviderRegistry implements Registry
 {
     /** @var Provider[] */
-    protected $register = [];
+    protected $registry = [];
 
     /**
      * @param Provider $provider
@@ -22,11 +22,11 @@ class ProviderRegistry implements Registry
      */
     public function register(Provider $provider): Registry
     {
-        if (array_key_exists($provider->getName(), $this->register)) {
+        if (in_array($provider, $this->registry)) {
             throw new ProviderAlreadyRegisteredException($provider);
         }
 
-        $this->register[$provider->getName()] = $provider;
+        $this->registry[] = $provider;
 
         return $this;
     }

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Registry;
 
+use Everlution\Navigation\Provider\DataProvider;
 use Everlution\Navigation\RootNavigationItem;
 
 /**
@@ -14,16 +15,20 @@ class NavigationRegistry extends ProviderRegistry
 {
     /**
      * @param string $identifier
-     * @return RootNavigationItem
+     * @param DataProvider $dataProvider
+     * @return RootNavigationItem|null
+     * @throws ProviderDoesNotExist
      */
-    public function getNavigation(string $identifier)
+    public function getNavigation(string $identifier, DataProvider $dataProvider)
     {
-        $navigation = new RootNavigationItem($identifier);
+        foreach ($this->registry as $provider) {
+            $navigation = $provider->accept($identifier, $dataProvider);
 
-        foreach ($this->register as $provider) {
-            $provider->accept($navigation);
+            if ($navigation instanceof RootNavigationItem) {
+                return $navigation;
+            }
         }
 
-        return $navigation;
+        throw new ProviderDoesNotExist($identifier);
     }
 }

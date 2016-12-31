@@ -4,44 +4,34 @@ declare(strict_types = 1);
 
 namespace Everlution\Navigation\Provider;
 
-use Everlution\Navigation\Item;
+use Everlution\Navigation\Factory\ItemFactory;
 use Everlution\Navigation\RootNavigationItem;
 
 /**
  * Class NavigationProvider.
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-abstract class NavigationProvider implements Provider
+class NavigationProvider implements Provider
 {
-    /**
-     * @param RootNavigationItem $navigation
-     * @return void
-     */
-    public function accept(RootNavigationItem &$navigation)
-    {
-        if ($navigation->getIdentifier() === $this->getName()) {
-            return;
-        }
+    /** @var ItemFactory */
+    private $factory;
 
-        $this->hookItems($navigation);
+    public function __construct(ItemFactory $factory)
+    {
+        $this->factory = $factory;
     }
 
     /**
-     * @param Item $item
-     * @return void
+     * @param string $identifier
+     * @param DataProvider $dataProvider
+     * @return RootNavigationItem|null
      */
-    abstract protected function hook(Item &$item);
-
-    /**
-     * @param Item $navigation
-     * @return void
-     */
-    protected function hookItems(Item &$navigation)
+    public function accept(string $identifier, DataProvider &$dataProvider)
     {
-        $this->hook($navigation);
-
-        foreach ($navigation->getChildren() as $child) {
-            $this->hook($child);
+        if (false === $dataProvider->canHandle($identifier)) {
+            return null;
         }
+
+        return $this->factory->build($dataProvider->getData($identifier));
     }
 }

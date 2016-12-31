@@ -13,13 +13,9 @@ use Everlution\Navigation\RootNavigationItem;
 interface Provider
 {
     /**
-     * @return string
+     * @param string $identifier
+     * @param DataProvider $dataProvider
+     * @return null|RootNavigationItem
      */
-    public function getName(): string;
-
-    /**
-     * @param RootNavigationItem $navigation
-     * @return void
-     */
-    public function accept(RootNavigationItem &$navigation);
+    public function accept(string $identifier, DataProvider &$dataProvider);
 }

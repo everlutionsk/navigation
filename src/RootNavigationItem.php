@@ -10,34 +10,16 @@ namespace Everlution\Navigation;
  */
 class RootNavigationItem implements Item
 {
-    /** @var string */
-    private $identifier;
-    /** @var string */
-    private $label;
-    /** @var Item[] */
-    private $children;
-
-    public function __construct(string $identifier, string $label = null)
-    {
-        $this->identifier = $identifier;
-        $this->label = $label ?? $identifier;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdentifier(): string
-    {
-        return $this->identifier;
-    }
-
     /**
      * @return string
      */
     public function getLabel(): string
     {
-        return $this->label;
+        return 'navigation root';
     }
+
+    /** @var Item[] */
+    private $children;
 
     /**
      * @return array
