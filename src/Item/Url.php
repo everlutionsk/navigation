@@ -19,9 +19,9 @@ class Url extends NavigationItem
     /** @var SimpleUri */
     private $uri;
 
-    public function __construct(string $label, string $url, Item $parent = null, array $children = [])
+    public function __construct(string $label, string $url, Item $parent = null, array $children = [], array $attributes = [])
     {
-        parent::__construct($label, $parent, $children);
+        parent::__construct($label, $parent, $children, $attributes);
 
         $this->uri = new SimpleUri($url);
         $this->addMatch(new ExactMatch($url));
