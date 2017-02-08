@@ -21,10 +21,13 @@ abstract class NavigationItem implements Item, MatchableItem
     private $parent;
     /** @var array */
     private $children = [];
+    /** @var array */
+    private $attributes = [];
 
-    public function __construct(string $label, Item $parent = null, array $children = [])
+    public function __construct(string $label, array $attributes = [], Item $parent = null, array $children = [])
     {
         $this->label = $label;
+        $this->attributes = $attributes;
         $this->parent = $parent;
 
         foreach ($children as $child) {
@@ -38,6 +41,14 @@ abstract class NavigationItem implements Item, MatchableItem
     public function getLabel(): string
     {
         return $this->label;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAttributes(): array
+    {
+        return $this->attributes;
     }
 
     /**

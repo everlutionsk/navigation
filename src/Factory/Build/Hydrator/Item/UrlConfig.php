@@ -26,7 +26,8 @@ class UrlConfig extends HydratorItem implements ItemConfig
     {
         return new $className(
             $arguments[self::OPTION_LABEL],
-            $arguments[self::OPTION_URL]
+            $arguments[self::OPTION_URL],
+            $arguments[self::OPTION_ATTRIBUTES]
         );
     }
 
@@ -40,12 +41,14 @@ class UrlConfig extends HydratorItem implements ItemConfig
             self::OPTION_CLASS => get_class($object),
             self::OPTION_LABEL => $object->getLabel(),
             self::OPTION_URL => $object->getUrl(),
+            self::OPTION_ATTRIBUTES => $object->getAttributes(),
         ];
     }
 
     protected function config()
     {
         $this->resolver->setRequired([self::OPTION_URL]);
+        $this->resolver->setAllowedTypes(self::OPTION_URL, 'string');
         $this->resolver->setAllowedTypes(self::OPTION_URL, 'string');
         $this->supportedClasses[] = Url::class;
     }

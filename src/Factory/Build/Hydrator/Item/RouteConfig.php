@@ -28,7 +28,8 @@ class RouteConfig extends HydratorItem implements ItemConfig
         return new $className(
             $arguments[self::OPTION_LABEL],
             $arguments[self::OPTION_ROUTE],
-            $arguments[self::OPTION_ROUTE_PARAMS]
+            $arguments[self::OPTION_ROUTE_PARAMS],
+            $arguments[self::OPTION_ATTRIBUTES]
         );
     }
 
@@ -43,6 +44,7 @@ class RouteConfig extends HydratorItem implements ItemConfig
             self::OPTION_LABEL => $object->getLabel(),
             self::OPTION_ROUTE => $object->getRoute(),
             self::OPTION_ROUTE_PARAMS => $object->getRouteParameters(),
+            self::OPTION_ATTRIBUTES => $object->getAttributes(),
         ];
     }
 

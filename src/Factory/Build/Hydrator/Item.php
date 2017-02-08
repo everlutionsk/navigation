@@ -19,6 +19,7 @@ abstract class Item extends Config implements ItemConfig
     const OPTION_LABEL = 'label';
     const OPTION_CHILDREN = 'children';
     const OPTION_MATCHES = 'matches';
+    const OPTION_ATTRIBUTES = 'attributes';
 
     public function __construct()
     {
@@ -29,15 +30,18 @@ abstract class Item extends Config implements ItemConfig
                 self::OPTION_LABEL,
                 self::OPTION_CHILDREN,
                 self::OPTION_MATCHES,
+                self::OPTION_ATTRIBUTES,
             ]
         );
 
         $this->resolver->setAllowedTypes(self::OPTION_LABEL, 'string');
         $this->resolver->setAllowedTypes(self::OPTION_CHILDREN, 'array');
         $this->resolver->setAllowedTypes(self::OPTION_MATCHES, 'array');
+        $this->resolver->setAllowedTypes(self::OPTION_ATTRIBUTES, 'array');
 
         $this->resolver->setDefault(self::OPTION_CHILDREN, []);
         $this->resolver->setDefault(self::OPTION_MATCHES, []);
+        $this->resolver->setDefault(self::OPTION_ATTRIBUTES, []);
     }
 
 
