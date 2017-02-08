@@ -29,9 +29,9 @@ class RouteConfig extends HydratorItem implements ItemConfig
             $arguments[self::OPTION_LABEL],
             $arguments[self::OPTION_ROUTE],
             $arguments[self::OPTION_ROUTE_PARAMS],
+            $arguments[self::OPTION_ATTRIBUTES],
             null,
-            [],
-            $arguments[self::OPTION_ATTRIBUTES]
+            []
         );
     }
 

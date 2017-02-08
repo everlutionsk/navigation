@@ -24,11 +24,11 @@ abstract class NavigationItem implements Item, MatchableItem
     /** @var array */
     private $attributes = [];
 
-    public function __construct(string $label, Item $parent = null, array $children = [], array $attributes = [])
+    public function __construct(string $label, array $attributes = [], Item $parent = null, array $children = [])
     {
         $this->label = $label;
-        $this->parent = $parent;
         $this->attributes = $attributes;
+        $this->parent = $parent;
 
         foreach ($children as $child) {
             $this->addChild($child);
