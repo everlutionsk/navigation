@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Everlution\Navigation\Factory;
 
 use Everlution\Navigation\Factory\Build\ItemConfig;
+use Everlution\Navigation\Filter\FilterContainer;
 use Everlution\Navigation\Item;
 use Everlution\Navigation\MatchableItem;
 use Everlution\Navigation\NavigationItem;
@@ -23,10 +24,19 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
 
     /** @var PropertyFactory */
     private $factory;
+    /**
+     * @var FilterContainer|null
+     */
+    private $filter;
 
-    public function __construct(PropertyFactory $factory)
+    /**
+     * @param PropertyFactory $factory
+     * @param FilterContainer|null $filter
+     */
+    public function __construct(PropertyFactory $factory, FilterContainer $filter = null)
     {
         $this->factory = $factory;
+        $this->filter = $filter;
     }
 
     public function addHydrator(ItemConfig $config)
@@ -44,6 +54,11 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
 
         foreach ($data[self::OPTIONS_ITEMS] as $item) {
             $item = $this->create($item);
+
+            if ($this->filterOut($item)) {
+                continue;
+            }
+
             $navigation->addChild($item);
         }
 
@@ -134,5 +149,18 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
         foreach ($item->getMatches() as $match) {
             $config[HydratorItem::OPTION_MATCHES][] = $this->getFactory()->flattenProperty($match);
         }
+    }
+
+    /**
+     * @param Item $item
+     * @return bool
+     */
+    private function filterOut(Item $item): bool
+    {
+        if (!$this->filter) {
+            return false;
+        }
+
+        return $this->filter->filterOut($item);
     }
 }
