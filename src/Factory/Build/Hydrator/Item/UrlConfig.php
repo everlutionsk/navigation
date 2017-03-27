@@ -27,7 +27,8 @@ class UrlConfig extends HydratorItem implements ItemConfig
         return new $className(
             $arguments[self::OPTION_LABEL],
             $arguments[self::OPTION_URL],
-            $arguments[self::OPTION_ATTRIBUTES]
+            $arguments[self::OPTION_ATTRIBUTES],
+            $arguments[self::OPTION_ROLES]
         );
     }
 
@@ -42,6 +43,7 @@ class UrlConfig extends HydratorItem implements ItemConfig
             self::OPTION_LABEL => $object->getLabel(),
             self::OPTION_URL => $object->getUrl(),
             self::OPTION_ATTRIBUTES => $object->getAttributes(),
+            self::OPTION_ROLES => $object->getRoles(),
         ];
     }
 

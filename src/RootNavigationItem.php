@@ -22,6 +22,8 @@ class RootNavigationItem implements Item
     private $children;
     /** @var array */
     private $attributes;
+    /** @var array */
+    private $roles;
 
     /**
      * @return array
@@ -37,6 +39,14 @@ class RootNavigationItem implements Item
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
     }
 
     /**

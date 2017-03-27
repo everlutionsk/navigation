@@ -23,12 +23,20 @@ abstract class NavigationItem implements Item, MatchableItem
     private $children = [];
     /** @var array */
     private $attributes = [];
+    /** @var string|array */
+    private $roles = [];
 
-    public function __construct(string $label, array $attributes = [], Item $parent = null, array $children = [])
-    {
+    public function __construct(
+        string $label,
+        array $attributes = [],
+        Item $parent = null,
+        array $children = [],
+        $roles = []
+    ) {
         $this->label = $label;
         $this->attributes = $attributes;
         $this->parent = $parent;
+        $this->roles = is_array($roles) ? $roles : [$roles];
 
         foreach ($children as $child) {
             $this->addChild($child);
@@ -49,6 +57,14 @@ abstract class NavigationItem implements Item, MatchableItem
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        return $this->roles;
     }
 
     /**

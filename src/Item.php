@@ -26,6 +26,11 @@ interface Item
     public function getAttributes(): array;
 
     /**
+     * @return array
+     */
+    public function getRoles(): array;
+
+    /**
      * @param Item $item
      * @return Item
      */

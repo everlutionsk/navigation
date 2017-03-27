@@ -24,11 +24,11 @@ class Route extends NavigationItem
         string $route,
         array $parameters = [],
         array $attributes = [],
+        $roles = [],
         Item $parent = null,
         array $children = []
-    )
-    {
-        parent::__construct($label, $attributes, $parent, $children);
+    ) {
+        parent::__construct($label, $attributes, $parent, $children, $roles);
 
         $this->uri = new RouteUri($route, $parameters);
         $this->addMatch(new ExactMatch($route));
