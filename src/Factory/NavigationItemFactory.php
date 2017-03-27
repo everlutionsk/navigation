@@ -27,16 +27,16 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
     /**
      * @var FilterContainer|null
      */
-    private $filter;
+    private $filterContainer;
 
     /**
      * @param PropertyFactory $factory
-     * @param FilterContainer|null $filter
+     * @param FilterContainer|null $filterContainer
      */
-    public function __construct(PropertyFactory $factory, FilterContainer $filter = null)
+    public function __construct(PropertyFactory $factory, FilterContainer $filterContainer = null)
     {
         $this->factory = $factory;
-        $this->filter = $filter;
+        $this->filterContainer = $filterContainer;
     }
 
     public function addHydrator(ItemConfig $config)
@@ -55,7 +55,7 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
         foreach ($data[self::OPTIONS_ITEMS] as $item) {
             $item = $this->create($item);
 
-            if ($this->filterOut($item)) {
+            if ($this->shouldFilterOut($item)) {
                 continue;
             }
 
@@ -155,12 +155,12 @@ class NavigationItemFactory extends HydratorContainer implements ItemFactory
      * @param Item $item
      * @return bool
      */
-    private function filterOut(Item $item): bool
+    private function shouldFilterOut(Item $item): bool
     {
-        if (!$this->filter) {
+        if (!$this->filterContainer) {
             return false;
         }
 
-        return $this->filter->filterOut($item);
+        return $this->filterContainer->shouldFilterOut($item);
     }
 }

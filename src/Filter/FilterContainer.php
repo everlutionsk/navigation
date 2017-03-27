@@ -41,10 +41,10 @@ class FilterContainer
      * @param Item $item
      * @return bool
      */
-    public function filterOut(Item $item): bool
+    public function shouldFilterOut(Item $item): bool
     {
         foreach ($this->filters as $filter) {
-            if ($filter->isApplicable($item) && $filter->filterOut($item)) {
+            if ($filter->isApplicable($item) && $filter->shouldFilterOut($item)) {
                 return true;
             }
         }

@@ -21,5 +21,5 @@ interface FilterInterface
      * @param Item $item
      * @return bool
      */
-    public function filterOut(Item $item): bool;
+    public function shouldFilterOut(Item $item): bool;
 }
