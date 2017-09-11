@@ -15,7 +15,7 @@ class ProviderAlreadyRegisteredException extends \Exception
     public function __construct(Provider $provider)
     {
         parent::__construct(
-            sprintf("Provider '%s' (%s) already registered", $provider->getName(), get_class($provider))
+            sprintf("Provider '%s' already registered", get_class($provider))
         );
     }
 }
