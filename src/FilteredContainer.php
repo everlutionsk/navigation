@@ -29,7 +29,7 @@ class FilteredContainer implements ContainerInterface
      */
     public function getItems(): array
     {
-        if (!$this->items) {
+        if (empty($this->items)) {
             $filter = new ChainFilter($this->container->getFilters());
             $this->items = $filter->filterItems($this->container)->getItems();
         }

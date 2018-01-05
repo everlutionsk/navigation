@@ -8,13 +8,13 @@ use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\SortableInterface;
 
 /**
- * Class FilteredContainer.
+ * Class OrderedContainer.
  *
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
 class OrderedContainer implements ContainerInterface
 {
-    /** @var FilteredContainerInterface */
+    /** @var ContainerInterface */
     private $container;
     /** @var ItemInterface[] */
     private $items;
@@ -29,7 +29,7 @@ class OrderedContainer implements ContainerInterface
      */
     public function getItems(): array
     {
-        if (!$this->items) {
+        if (empty($this->items)) {
             $items = $this->container->getItems();
 
             $sortable = [];

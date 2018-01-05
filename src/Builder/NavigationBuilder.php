@@ -15,7 +15,7 @@ use Everlution\Navigation\Item\NestableInterface;
  */
 class NavigationBuilder
 {
-    /** @var ContainerInterface[] */
+    /** @var ContainerInterface */
     private $container;
     /** @var RootNode */
     private $root;
