@@ -91,9 +91,7 @@ class NavigationBuilder
     {
         $this->root = new RootNode();
         foreach ($this->container->getItems() as $item) {
-            if (!$this->current && $matcher->isCurrent($item)) {
-                $this->current = $item;
-            }
+            $this->setCurrentItem($matcher, $item);
 
             if ($item instanceof NestableInterface) {
                 $this->getRootItem($item);
@@ -140,5 +138,12 @@ class NavigationBuilder
         $parentNode = new ParentNode($item);
         $this->used[$name] = $parentNode;
         $root->addChild($parentNode);
+    }
+
+    private function setCurrentItem(MatcherInterface $matcher, ItemInterface $item): void
+    {
+        if (!$this->current && $matcher->isCurrent($item)) {
+            $this->current = $item;
+        }
     }
 }
