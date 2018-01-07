@@ -16,11 +16,11 @@ trait SortableAndRegistrableTrait
      */
     public function getRegisteredContainerNames(): array
     {
-        return array_keys(static::CONTAINERS);
+        return array_keys(get_called_class()::CONTAINERS);
     }
 
     public function getOrder(string $containerName): int
     {
-        return static::CONTAINERS[$containerName];
+        return get_called_class()::CONTAINERS[$containerName];
     }
 }
