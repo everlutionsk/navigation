@@ -31,16 +31,11 @@ class Registry
         $this->registry[$containerName] = $container;
     }
 
-    /**
-     * @param RegistrableItemInterface $item
-     *
-     * @throws ContainerIsNotRegisteredException
-     */
     public function register(RegistrableItemInterface $item): void
     {
         foreach ($item->getRegisteredContainerNames() as $containerName) {
             if (false === array_key_exists($containerName, $this->registry)) {
-                throw new ContainerIsNotRegisteredException($containerName);
+                continue;
             }
 
             $this->registry[$containerName]->add($item);

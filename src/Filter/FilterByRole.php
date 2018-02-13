@@ -12,7 +12,7 @@ use Everlution\Navigation\MutableContainerInterface;
  *
  * @author Ivan Barlog <ivan.barlog@everlution.sk>
  */
-class RoleFilter implements NavigationFilterInterface
+class FilterByRole implements NavigationFilterInterface
 {
     /** @var string[] */
     private $roles;

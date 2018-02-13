@@ -7,6 +7,7 @@ namespace Everlution\Navigation\Builder;
 use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
+use Everlution\Navigation\OrderedContainer;
 
 /**
  * Class NavigationBuilder.
@@ -28,7 +29,7 @@ class NavigationBuilder
 
     public function __construct(ContainerInterface $container, MatcherInterface $matcher)
     {
-        $this->container = $container;
+        $this->container = new OrderedContainer($container);
         $this->build($matcher);
     }
 
