@@ -20,6 +20,8 @@ class ParentNode
     private $children = [];
     /** @var ParentNode */
     private $parent;
+    /** @var ItemInterface */
+    private $parentItem;
 
     public function __construct(ContainerInterface $item)
     {
@@ -74,6 +76,25 @@ class ParentNode
     public function setParent(ParentNode $parent): ParentNode
     {
         $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * @return ItemInterface
+     */
+    public function getParentItem(): ?ItemInterface
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param ItemInterface $parentItem
+     * @return ParentNode
+     */
+    public function setParentItem(ItemInterface $parentItem): ParentNode
+    {
+        $this->parentItem = $parentItem;
 
         return $this;
     }

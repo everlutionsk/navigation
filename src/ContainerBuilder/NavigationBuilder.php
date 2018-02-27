@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Everlution\Navigation\ContainerBuilder;
 
 use Everlution\Navigation\ContainerInterface;
-use Everlution\Navigation\Item\NestableInterface;
 
 /**
  * Class NavigationBuilder.
@@ -64,7 +63,7 @@ class NavigationBuilder
 
     private function getParent(NestableInterface $item): ContainerInterface
     {
-        return $this->container->get($item->getParent());
+        return $this->container->get($item->getParentNavigation());
     }
 
     private function walkToRootContainer(ContainerInterface $container): ContainerInterface
