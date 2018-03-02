@@ -8,7 +8,7 @@ use Everlution\Navigation\ContainerInterface;
  * Class NavigationContainerInterface
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
-interface NavigationContainerInterface
+interface AdvancedNavigationInterface
 {
     /**
      * @return ContainerInterface[]

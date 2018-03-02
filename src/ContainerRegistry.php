@@ -2,7 +2,7 @@
 
 namespace Everlution\Navigation;
 
-use Everlution\Navigation\ContainerBuilder\NavigationContainerInterface;
+use Everlution\Navigation\ContainerBuilder\AdvancedNavigationInterface;
 
 /**
  * Class ContainerRegistry
@@ -10,10 +10,10 @@ use Everlution\Navigation\ContainerBuilder\NavigationContainerInterface;
  */
 class ContainerRegistry
 {
-    /** @var NavigationContainerInterface[] */
+    /** @var AdvancedNavigationInterface[] */
     private $containers = [];
 
-    public function addContainer(NavigationContainerInterface $container)
+    public function addContainer(AdvancedNavigationInterface $container)
     {
         $containerName = get_class($container);
         if (array_key_exists($containerName, $this->containers)) {
@@ -23,7 +23,7 @@ class ContainerRegistry
         $this->containers[$containerName] = $container;
     }
 
-    public function getContainer(string $containerName): NavigationContainerInterface
+    public function getContainer(string $containerName): AdvancedNavigationInterface
     {
         if (false === array_key_exists($containerName, $this->containers)) {
             throw new ContainerIsNotRegisteredException($containerName);

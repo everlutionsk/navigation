@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation\ContainerBuilder;
 
+use Everlution\Navigation\Builder\MatcherInterface;
 use Everlution\Navigation\ContainerInterface;
 
 /**
@@ -13,7 +14,7 @@ use Everlution\Navigation\ContainerInterface;
  */
 class NavigationBuilder
 {
-    /** @var NavigationContainerInterface */
+    /** @var AdvancedNavigationInterface */
     private $container;
     /** @var ParentNode */
     private $root;
@@ -23,10 +24,10 @@ class NavigationBuilder
     private $used = [];
     /** @var ParentNode */
     private $current;
-    /** @var ContainerMatcherInterface */
+    /** @var MatcherInterface */
     private $matcher;
 
-    public function __construct(NavigationContainerInterface $container, ContainerMatcherInterface $matcher)
+    public function __construct(AdvancedNavigationInterface $container, MatcherInterface $matcher)
     {
         $this->container = $container;
         $this->matcher = $matcher;
@@ -47,7 +48,7 @@ class NavigationBuilder
         return $this->current;
     }
 
-    private function build(ContainerMatcherInterface $matcher)
+    private function build(MatcherInterface $matcher)
     {
         $this->root = new ParentNode($this->getRootContainer($this->container->getRoot()));
         $this->setCurrentNode($matcher, $this->root);
@@ -109,7 +110,7 @@ class NavigationBuilder
         $this->setCurrentNode($this->matcher, $parentNode);
     }
 
-    private function setCurrentNode(ContainerMatcherInterface $matcher, ParentNode $node): void
+    private function setCurrentNode(MatcherInterface $matcher, ParentNode $node): void
     {
         if (!$this->current && $matcher->isCurrent($node->getContainer())) {
             $this->current = $node;
