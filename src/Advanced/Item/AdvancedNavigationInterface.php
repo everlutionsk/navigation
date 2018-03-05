@@ -2,7 +2,7 @@
 
 namespace Everlution\Navigation\Advanced\Item;
 
-use Everlution\Navigation\ContainerInterface;
+use Everlution\Navigation\Container\ContainerInterface;
 
 /**
  * Class NavigationContainerInterface
@@ -11,7 +11,7 @@ use Everlution\Navigation\ContainerInterface;
 interface AdvancedNavigationInterface
 {
     /**
-     * @return ContainerInterface[]
+     * @return \Everlution\Navigation\Container\ContainerInterface[]
      */
     public function getContainers(): array;
 
@@ -20,7 +20,7 @@ interface AdvancedNavigationInterface
      *
      * @param string $name
      *
-     * @return ContainerInterface
+     * @return \Everlution\Navigation\Container\ContainerInterface
      */
     public function get(string $name): ContainerInterface;
 

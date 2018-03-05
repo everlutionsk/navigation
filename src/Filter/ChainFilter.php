@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation\Filter;
 
-use Everlution\Navigation\MutableContainerInterface;
+use Everlution\Navigation\Container\MutableContainerInterface;
 
 /**
  * Class ChainedFilter.

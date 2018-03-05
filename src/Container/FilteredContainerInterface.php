@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Container;
 
 use Everlution\Navigation\Filter\NavigationFilterInterface;
+use Everlution\Navigation\Container\MutableContainerInterface;
 
 /**
  * Interface FilteredContainerInterface.

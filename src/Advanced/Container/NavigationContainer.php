@@ -1,9 +1,9 @@
 <?php
 
-namespace Everlution\Navigation\Advanced;
+namespace Everlution\Navigation\Advanced\Container;
 
 use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
-use Everlution\Navigation\ContainerInterface;
+use Everlution\Navigation\Container\ContainerInterface;
 
 /**
  * Class NavigationContainer
@@ -20,7 +20,7 @@ abstract class NavigationContainer implements AdvancedNavigationInterface
     }
 
     /**
-     * @return ContainerInterface[]
+     * @return \Everlution\Navigation\Container\ContainerInterface[]
      */
     public function getContainers(): array
     {

@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Container;
 
+use Everlution\Navigation\Container\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\SortableInterface;
 

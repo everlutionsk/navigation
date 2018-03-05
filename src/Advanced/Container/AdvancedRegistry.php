@@ -1,14 +1,16 @@
 <?php
 
-namespace Everlution\Navigation\Advanced;
+namespace Everlution\Navigation\Advanced\Container;
 
 use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
+use Everlution\Navigation\Container\ContainerAlreadyRegisteredException;
+use Everlution\Navigation\Container\ContainerIsNotRegisteredException;
 
 /**
- * Class ContainerRegistry
+ * Class AdvancedRegistry
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
-class ContainerRegistry
+class AdvancedRegistry
 {
     /** @var AdvancedNavigationInterface[] */
     private $containers = [];

@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Container;
 
+use Everlution\Navigation\Container\ContainerInterface;
 use Everlution\Navigation\Filter\ChainFilter;
+use Everlution\Navigation\Container\FilteredContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**

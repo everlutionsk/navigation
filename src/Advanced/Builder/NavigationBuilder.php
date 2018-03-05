@@ -8,7 +8,7 @@ use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
 use Everlution\Navigation\Advanced\Item\NestableInterface;
 use Everlution\Navigation\Builder\MatcherInterface;
 use Everlution\Navigation\Builder\NoCurrentItemFoundException;
-use Everlution\Navigation\ContainerInterface;
+use Everlution\Navigation\Container\ContainerInterface;
 
 /**
  * Class NavigationBuilder.
@@ -56,7 +56,7 @@ class NavigationBuilder
         $this->root = new ParentNode($this->getRootContainer($this->container->getRoot()));
         $this->setCurrentNode($matcher, $this->root);
 
-        /** @var ContainerInterface $container */
+        /** @var \Everlution\Navigation\Container\ContainerInterface $container */
         foreach ($this->container->getContainers() as $container) {
             if ($container instanceof NestableInterface) {
                 $this->walkToRootContainer($container);

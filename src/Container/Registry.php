@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Container;
 
+use Everlution\Navigation\Container\ContainerAlreadyRegisteredException;
+use Everlution\Navigation\Container\ContainerIsNotRegisteredException;
+use Everlution\Navigation\Container\MutableContainerInterface;
 use Everlution\Navigation\Item\RegistrableItemInterface;
 
 /**
