@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation\ContainerBuilder;
+namespace Everlution\Navigation\Advanced\Builder;
 
 use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;

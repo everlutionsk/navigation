@@ -2,9 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation\ContainerBuilder;
+namespace Everlution\Navigation\Advanced\Builder;
 
+use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
+use Everlution\Navigation\Advanced\Item\NestableInterface;
 use Everlution\Navigation\Builder\MatcherInterface;
+use Everlution\Navigation\Builder\NoCurrentItemFoundException;
 use Everlution\Navigation\ContainerInterface;
 
 /**

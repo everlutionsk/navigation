@@ -1,7 +1,8 @@
 <?php
 
-namespace Everlution\Navigation\ContainerBuilder;
+namespace Everlution\Navigation\Advanced;
 
+use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
 use Everlution\Navigation\ContainerInterface;
 
 /**

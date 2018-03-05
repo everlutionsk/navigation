@@ -1,8 +1,8 @@
 <?php
 
-namespace Everlution\Navigation;
+namespace Everlution\Navigation\Advanced;
 
-use Everlution\Navigation\ContainerBuilder\AdvancedNavigationInterface;
+use Everlution\Navigation\Advanced\Item\AdvancedNavigationInterface;
 
 /**
  * Class ContainerRegistry
