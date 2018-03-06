@@ -7,7 +7,7 @@ namespace Everlution\Navigation\Nested\Builder;
 use Everlution\Navigation\ContainerInterface;
 
 /**
- * Class RootNode
+ * Class RootNode.
  *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
@@ -57,6 +57,7 @@ class ParentNode
 
     /**
      * @param string $name
+     *
      * @return bool
      */
     public function has(string $name): bool
@@ -66,6 +67,7 @@ class ParentNode
 
     /**
      * @param string $name
+     *
      * @return ParentNode
      */
     public function get(string $name): ParentNode

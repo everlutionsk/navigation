@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Everlution\Navigation\Nested;
 
 use Everlution\Navigation\ContainerInterface;
@@ -7,7 +9,7 @@ use Everlution\Navigation\Nested\Container\ContainerNotFoundException;
 use Everlution\Navigation\Nested\Container\NestableContainerInterface;
 
 /**
- * Class AdvancedNavigationInterface
+ * Class AdvancedNavigationInterface.
  *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */

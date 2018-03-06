@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation;
 
-use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Filter\ChainFilter;
-use Everlution\Navigation\FilteredContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**

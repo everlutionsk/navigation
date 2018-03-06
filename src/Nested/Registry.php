@@ -1,12 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Everlution\Navigation\Nested;
 
 use Everlution\Navigation\ContainerAlreadyRegisteredException;
 use Everlution\Navigation\ContainerIsNotRegisteredException;
 
 /**
- * Class AdvancedRegistry
+ * Class AdvancedRegistry.
+ *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
 class Registry

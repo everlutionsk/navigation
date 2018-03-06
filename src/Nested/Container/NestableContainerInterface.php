@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Everlution\Navigation\Nested\Container;
 
 use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**
- * Class NestableContainerInterface
+ * Class NestableContainerInterface.
  *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */

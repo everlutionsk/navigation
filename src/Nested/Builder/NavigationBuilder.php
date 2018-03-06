@@ -12,7 +12,7 @@ use Everlution\Navigation\Builder\NoCurrentItemFoundException;
 use Everlution\Navigation\ContainerInterface;
 
 /**
- * Class NavigationBuilder
+ * Class NavigationBuilder.
  *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
@@ -69,7 +69,9 @@ class NavigationBuilder
 
     /**
      * @param NestableContainerInterface $item
+     *
      * @return NestableContainerInterface
+     *
      * @throws ContainerNotFoundException
      */
     private function getParent(NestableContainerInterface $item): NestableContainerInterface
@@ -79,6 +81,7 @@ class NavigationBuilder
 
     /**
      * @param NestableContainerInterface $container
+     *
      * @return NestableContainerInterface
      */
     private function walkToRootContainer(NestableContainerInterface $container): NestableContainerInterface
@@ -130,6 +133,7 @@ class NavigationBuilder
 
     /**
      * @param ContainerInterface $container
+     *
      * @return bool
      */
     private function isUsed(ContainerInterface $container): bool
