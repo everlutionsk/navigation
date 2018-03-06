@@ -28,14 +28,22 @@ abstract class NavigationContainer implements AdvancedNavigationInterface
         return $this->containers;
     }
 
+    /**
+     * @param string $name
+     * @return NestableContainerInterface
+     * @throws ContainerNotFoundException
+     */
     public function get(string $name): NestableContainerInterface
     {
         if (false === isset($this->containers[$name])) {
-            throw new ContainerNotFoundException();
+            throw new ContainerNotFoundException($name);
         }
 
         return $this->containers[$name];
     }
 
+    /**
+     * @return ContainerInterface
+     */
     abstract public function getRoot(): ContainerInterface;
 }

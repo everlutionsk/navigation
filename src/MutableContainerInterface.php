@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation;
 
-use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**

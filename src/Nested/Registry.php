@@ -2,7 +2,6 @@
 
 namespace Everlution\Navigation\Nested;
 
-use Everlution\Navigation\Nested\AdvancedNavigationInterface;
 use Everlution\Navigation\ContainerAlreadyRegisteredException;
 use Everlution\Navigation\ContainerIsNotRegisteredException;
 

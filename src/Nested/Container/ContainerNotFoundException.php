@@ -8,4 +8,8 @@ namespace Everlution\Navigation\Nested\Container;
  */
 class ContainerNotFoundException extends \Exception
 {
+    public function __construct(string $name)
+    {
+        parent::__construct("$name container was not found");
+    }
 }
