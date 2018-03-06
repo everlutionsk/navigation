@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Everlution\Navigation;
 
 use Everlution\Navigation\Item\ItemInterface;
+use Everlution\Navigation\MutableContainerInterface;
 
 /**
  * Class MutableContainer.

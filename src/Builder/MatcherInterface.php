@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation\Builder;
 
-use Everlution\Navigation\Item\ItemInterface;
-
 /**
  * Interface MatcherInterface.
  *
@@ -13,5 +11,5 @@ use Everlution\Navigation\Item\ItemInterface;
  */
 interface MatcherInterface
 {
-    public function isCurrent(ItemInterface $item): bool;
+    public function isCurrent($item): bool;
 }

@@ -16,7 +16,7 @@ use Everlution\Navigation\OrderedContainer;
  */
 class NavigationBuilder
 {
-    /** @var ContainerInterface */
+    /** @var \Everlution\Navigation\ContainerInterface */
     private $container;
     /** @var RootNode */
     private $root;
