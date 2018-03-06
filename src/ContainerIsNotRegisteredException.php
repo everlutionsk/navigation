@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation\Container;
+namespace Everlution\Navigation;
 
 /**
  * Class ContainerIsNotRegisteredException.

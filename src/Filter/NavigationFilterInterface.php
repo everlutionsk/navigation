@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation\Filter;
 
-use Everlution\Navigation\Container\MutableContainerInterface;
+use Everlution\Navigation\MutableContainerInterface;
 
 /**
  * Interface NavigationFilterInterface.

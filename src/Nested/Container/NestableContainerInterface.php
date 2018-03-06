@@ -1,19 +1,21 @@
 <?php
 
-namespace Everlution\Navigation\Advanced\Item;
+namespace Everlution\Navigation\Nested\Container;
 
+use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**
- * Class NestableInterface
+ * Class NestableContainerInterface
+ *
  * @author Martin Lutter <martin.lutter@everlution.sk>
  */
-interface NestableInterface
+interface NestableContainerInterface extends ContainerInterface
 {
     /**
      * @return string
      */
-    public function getParentNavigation(): string;
+    public function getParentContainer(): string;
 
     /**
      * @return ItemInterface

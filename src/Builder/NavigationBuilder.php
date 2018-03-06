@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation\Builder;
 
-use Everlution\Navigation\Container\ContainerInterface;
+use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
-use Everlution\Navigation\Container\OrderedContainer;
+use Everlution\Navigation\OrderedContainer;
 
 /**
  * Class NavigationBuilder.
@@ -16,7 +16,7 @@ use Everlution\Navigation\Container\OrderedContainer;
  */
 class NavigationBuilder
 {
-    /** @var \Everlution\Navigation\Container\ContainerInterface */
+    /** @var \Everlution\Navigation\ContainerInterface */
     private $container;
     /** @var RootNode */
     private $root;

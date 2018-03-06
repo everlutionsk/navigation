@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Everlution\Navigation\Filter;
 
 use Everlution\Navigation\Item\HasSupportedRolesInterface;
-use Everlution\Navigation\Container\MutableContainerInterface;
+use Everlution\Navigation\MutableContainerInterface;
 
 /**
  * Class RoleFilter.

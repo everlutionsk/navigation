@@ -6,7 +6,7 @@ namespace Everlution\Navigation\Filter;
 
 use Everlution\Navigation\Item\HasSupportedRolesInterface;
 use Everlution\Navigation\Item\ItemInterface;
-use Everlution\Navigation\Container\MutableContainerInterface;
+use Everlution\Navigation\MutableContainerInterface;
 
 /**
  * Class FilterByRoleKeepNotSupported.

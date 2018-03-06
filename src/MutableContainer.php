@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Everlution\Navigation\Container;
+namespace Everlution\Navigation;
 
 use Everlution\Navigation\Item\ItemInterface;
-use Everlution\Navigation\Container\MutableContainerInterface;
+use Everlution\Navigation\MutableContainerInterface;
 
 /**
  * Class MutableContainer.
