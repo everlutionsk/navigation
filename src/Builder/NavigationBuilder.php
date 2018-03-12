@@ -6,7 +6,7 @@ namespace Everlution\Navigation\Builder;
 
 use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
-use Everlution\Navigation\Item\NavigationSplitInterface;
+use Everlution\Navigation\Item\SplittableInterface;
 use Everlution\Navigation\Item\NestableInterface;
 use Everlution\Navigation\OrderedContainer;
 
@@ -27,13 +27,14 @@ class NavigationBuilder
     private $used = [];
     /** @var ParentNode */
     private $current;
+    /** @var MatcherInterface */
     private $matcher;
 
     public function __construct(ContainerInterface $container, MatcherInterface $matcher)
     {
         $this->container = new OrderedContainer($container);
         $this->matcher = $matcher;
-        $this->build($matcher);
+        $this->build();
     }
 
     /**
@@ -106,23 +107,11 @@ class NavigationBuilder
     public function getCurrentRoot()
     {
         $root = $this->getCurrentNode();
-        while ($root instanceof ParentNode and false === ($root->getItem() instanceof NavigationSplitInterface)) {
+        while ($root instanceof ParentNode and false === ($root->getItem() instanceof SplittableInterface)) {
             $root = $root->getParent();
         }
 
         return $root;
-    }
-
-    public function isChildCurrent(ItemInterface $item): bool
-    {
-        $root = $this->getCurrentNode();
-        while ($root instanceof ParentNode) {
-            if ($root->getItem() === $item) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public function getRoot(): RootNode
@@ -130,12 +119,10 @@ class NavigationBuilder
         return $this->root;
     }
 
-    private function build(MatcherInterface $matcher)
+    private function build()
     {
         $this->root = new RootNode();
         foreach ($this->container->getItems() as $item) {
-//            $this->setCurrentItem($matcher, $this->used[get_class($item)]);
-
             if ($item instanceof NestableInterface) {
                 $this->getRootItem($item);
                 $this->addItemsFromStack();
@@ -181,12 +168,12 @@ class NavigationBuilder
         $parentNode = new ParentNode($item, $root);
         $this->used[$name] = $parentNode;
         $root->addChild($parentNode);
-        $this->setCurrentItem($this->matcher, $parentNode);
+        $this->setCurrentItem($parentNode);
     }
 
-    private function setCurrentItem(MatcherInterface $matcher, ParentNode $item): void
+    private function setCurrentItem(ParentNode $item): void
     {
-        if (!$this->current && $matcher->isCurrent($item->getItem())) {
+        if (!$this->current && $this->matcher->isCurrent($item->getItem())) {
             $this->current = $item;
         }
     }
