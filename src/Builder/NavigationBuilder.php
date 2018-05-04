@@ -16,21 +16,24 @@ use Everlution\Navigation\OrderedContainer;
  */
 class NavigationBuilder
 {
+    /** @var MatcherInterface */
+    private $matcher;
     /** @var ContainerInterface */
     private $container;
     /** @var RootNode */
     private $root;
     /** @var ItemInterface[] */
     private $stack = [];
-    /** @var ItemInterface[] */
+    /** @var ParentNode[] */
     private $used = [];
-    /** @var ItemInterface */
+    /** @var ParentNode */
     private $current;
 
     public function __construct(ContainerInterface $container, MatcherInterface $matcher)
     {
+        $this->matcher = $matcher;
         $this->container = new OrderedContainer($container);
-        $this->build($matcher);
+        $this->build();
     }
 
     /**
@@ -66,7 +69,15 @@ class NavigationBuilder
         $ancestors = $this->getBreadcrumbs();
         array_pop($ancestors);
 
-        return in_array($item, $ancestors);
+        return in_array(
+            $item,
+            array_map(
+                function (ParentNode $node) {
+                    return $node->getItem();
+                },
+                $ancestors
+            )
+        );
     }
 
     /**
@@ -80,6 +91,15 @@ class NavigationBuilder
             throw new NoCurrentItemFoundException();
         }
 
+        return $this->current->getItem();
+    }
+
+    public function getCurrentNode(): ParentNode
+    {
+        if (!$this->current) {
+            throw new NoCurrentItemFoundException();
+        }
+
         return $this->current;
     }
 
@@ -88,12 +108,10 @@ class NavigationBuilder
         return $this->root;
     }
 
-    private function build(MatcherInterface $matcher)
+    private function build()
     {
         $this->root = new RootNode();
         foreach ($this->container->getItems() as $item) {
-            $this->setCurrentItem($matcher, $item);
-
             if ($item instanceof NestableInterface) {
                 $this->getRootItem($item);
                 $this->addItemsFromStack();
@@ -136,15 +154,16 @@ class NavigationBuilder
             return;
         }
 
-        $parentNode = new ParentNode($item);
+        $parentNode = new ParentNode($item, $root);
         $this->used[$name] = $parentNode;
         $root->addChild($parentNode);
+        $this->setCurrentItem($parentNode);
     }
 
-    private function setCurrentItem(MatcherInterface $matcher, ItemInterface $item): void
+    private function setCurrentItem(ParentNode $node): void
     {
-        if (!$this->current && $matcher->isCurrent($item)) {
-            $this->current = $item;
+        if (!$this->current && $this->matcher->isCurrent($node->getItem())) {
+            $this->current = $node;
         }
     }
 }
