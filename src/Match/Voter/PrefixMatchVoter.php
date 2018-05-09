@@ -20,6 +20,6 @@ class PrefixMatchVoter implements VoterInterface
             return false;
         }
 
-        return 0 === strpos($match->getValue(), $url);
+        return 0 === strpos($url, $match->getValue());
     }
 }
