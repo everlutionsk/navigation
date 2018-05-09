@@ -15,14 +15,22 @@ class ParentNode extends RootNode
 {
     /** @var ItemInterface */
     private $item;
+    /** @var RootNode */
+    private $parent;
 
-    public function __construct(ItemInterface $item)
+    public function __construct(ItemInterface $item, RootNode $parent)
     {
         $this->item = $item;
+        $this->parent = $parent;
     }
 
     public function getItem(): ItemInterface
     {
         return $this->item;
+    }
+
+    public function getParent(): RootNode
+    {
+        return $this->parent;
     }
 }
