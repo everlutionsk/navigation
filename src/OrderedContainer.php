@@ -30,18 +30,7 @@ class OrderedContainer implements ContainerInterface
     public function getItems(): array
     {
         if (empty($this->items)) {
-            $items = $this->container->getItems();
-
-            $sortable = [];
-            foreach ($items as $key => $item) {
-                if ($item instanceof SortableInterface) {
-                    $sortable[$key] = $item;
-                    unset($items[$key]);
-                }
-            }
-
-            uasort($sortable, [$this, 'ascending']);
-            $this->items = array_merge($sortable, $items);
+            $this->items = $this->container->getItems();
         }
 
         return $this->items;
@@ -50,10 +39,5 @@ class OrderedContainer implements ContainerInterface
     public function get(string $name): ItemInterface
     {
         return $this->items[$name];
-    }
-
-    private function ascending(SortableInterface $first, SortableInterface $second)
-    {
-        return $first->getOrder() <=> $second->getOrder();
     }
 }

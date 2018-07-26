@@ -7,6 +7,7 @@ namespace Everlution\Navigation\Builder;
 use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
+use Everlution\Navigation\Item\SortableInterface;
 use Everlution\Navigation\OrderedContainer;
 
 /**
@@ -120,6 +121,40 @@ class NavigationBuilder
 
             $this->addItem($this->root, $item);
         }
+
+        foreach ($this->root->getChildren() as $item) {
+            $this->reorder($item);
+        }
+    }
+
+    private function reorder(ParentNode $item)
+    {
+        $children = $item->getChildren();
+
+        foreach ($children as $child) {
+            $this->reorder($child);
+        }
+
+        if (
+            false === empty($children)
+        ) {
+            uasort($children, [$this, 'ascending']);
+            $item->setChildren($children);
+        }
+
+    }
+
+    private function ascending(ParentNode $first, ParentNode $second)
+    {
+        if (false === ($firstNode = $first->getItem()) instanceof SortableInterface) {
+            return 0;
+        }
+
+        if (false === ($secondNode = $second->getItem()) instanceof SortableInterface) {
+            return 1;
+        }
+
+        return $firstNode->getOrder() <=> $secondNode->getOrder();
     }
 
     private function getParent(NestableInterface $item): ItemInterface

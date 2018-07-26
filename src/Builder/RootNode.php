@@ -32,6 +32,11 @@ class RootNode
         return $this->children;
     }
 
+    public function setChildren(array $children)
+    {
+        $this->children = $children;
+    }
+
     public function has(string $name): bool
     {
         return array_key_exists($name, $this->children);
