@@ -20,6 +20,6 @@ class RegexMatchVoter implements VoterInterface
             return false;
         }
 
-        return 1 === preg_match($url, $match->getValue());
+        return 1 === preg_match($match->getValue(), $url);
     }
 }

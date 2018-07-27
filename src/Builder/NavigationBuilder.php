@@ -8,6 +8,7 @@ use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
 use Everlution\Navigation\Item\SortableInterface;
+use Everlution\Navigation\MutableContainer;
 use Everlution\Navigation\OrderedContainer;
 
 /**
@@ -49,11 +50,12 @@ class NavigationBuilder
             $this->stack = array_reverse($this->stack);
             $this->stack = array_map(
                 function (ItemInterface $item) {
-                    return $this->used[get_class($item)];
+                    return $this->used[MutableContainer::getIdentifier($item)];
                 },
                 $this->stack
             );
         }
+
 
         return $this->stack;
     }
@@ -178,13 +180,13 @@ class NavigationBuilder
         $root = $this->root;
         while ($item = array_pop($this->stack)) {
             $this->addItem($root, $item);
-            $root = $root->get(get_class($item));
+            $root = $root->get(MutableContainer::getIdentifier($item));
         }
     }
 
     private function addItem(RootNode $root, ItemInterface $item): void
     {
-        $name = get_class($item);
+        $name = MutableContainer::getIdentifier($item);
         if (array_key_exists($name, $this->used)) {
             return;
         }

@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Everlution\Navigation\Builder;
+use Everlution\Navigation\MutableContainer;
 
 /**
  * Class RootNode.
@@ -16,7 +17,7 @@ class RootNode
 
     public function addChild(ParentNode $item): void
     {
-        $this->children[get_class($item->getItem())] = $item;
+        $this->children[MutableContainer::getIdentifier($item->getItem())] = $item;
     }
 
     public function hasChildren(): bool

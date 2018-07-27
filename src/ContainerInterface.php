@@ -25,5 +25,5 @@ interface ContainerInterface
      *
      * @return ItemInterface
      */
-    public function get(string $name): ItemInterface;
+    public function get(string $identifier): ItemInterface;
 }

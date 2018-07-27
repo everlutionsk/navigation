@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Everlution\Navigation;
 
+use Everlution\Navigation\Item\IdentifiableInterface;
 use Everlution\Navigation\Item\ItemInterface;
 
 /**
@@ -18,7 +19,7 @@ abstract class MutableContainer implements MutableContainerInterface
 
     public function add(ItemInterface $item): void
     {
-        $this->items[get_class($item)] = $item;
+        $this->items[self::getIdentifier($item)] = $item;
     }
 
     /**
@@ -29,13 +30,19 @@ abstract class MutableContainer implements MutableContainerInterface
         return $this->items;
     }
 
-    public function get(string $name): ItemInterface
+    public function get(string $identifier): ItemInterface
     {
-        return $this->items[$name];
+        return $this->items[$identifier];
     }
 
     public function reset(): void
     {
         $this->items = [];
     }
+
+    public static function getIdentifier(ItemInterface $item): string
+    {
+        return $item instanceof IdentifiableInterface ? $item->getIdentifier() : get_class($item);
+    }
+
 }

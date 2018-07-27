@@ -15,6 +15,8 @@ interface MutableContainerInterface extends ContainerInterface
 {
     public function add(ItemInterface $item): void;
 
+    public static function getIdentifier(ItemInterface $item): string;
+
     /**
      * removes all items.
      */
