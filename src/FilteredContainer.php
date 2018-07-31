@@ -37,8 +37,8 @@ class FilteredContainer implements ContainerInterface
         return $this->items;
     }
 
-    public function get(string $name): ItemInterface
+    public function get(string $identifier): ItemInterface
     {
-        return $this->items[$name];
+        return $this->items[$identifier];
     }
 }
