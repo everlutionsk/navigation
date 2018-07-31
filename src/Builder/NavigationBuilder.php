@@ -8,6 +8,7 @@ use Everlution\Navigation\ContainerInterface;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
 use Everlution\Navigation\Item\SortableInterface;
+use Everlution\Navigation\Helper\ItemHelper;
 use Everlution\Navigation\MutableContainer;
 use Everlution\Navigation\OrderedContainer;
 
@@ -50,12 +51,11 @@ class NavigationBuilder
             $this->stack = array_reverse($this->stack);
             $this->stack = array_map(
                 function (ItemInterface $item) {
-                    return $this->used[MutableContainer::getIdentifier($item)];
+                    return $this->used[ItemHelper::getIdentifier($item)];
                 },
                 $this->stack
             );
         }
-
 
         return $this->stack;
     }
@@ -137,13 +137,10 @@ class NavigationBuilder
             $this->reorder($child);
         }
 
-        if (
-            false === empty($children)
-        ) {
+        if (false === empty($children)) {
             uasort($children, [$this, 'ascending']);
             $item->setChildren($children);
         }
-
     }
 
     private function ascending(ParentNode $first, ParentNode $second)
@@ -180,13 +177,13 @@ class NavigationBuilder
         $root = $this->root;
         while ($item = array_pop($this->stack)) {
             $this->addItem($root, $item);
-            $root = $root->get(MutableContainer::getIdentifier($item));
+            $root = $root->get(ItemHelper::getIdentifier($item));
         }
     }
 
     private function addItem(RootNode $root, ItemInterface $item): void
     {
-        $name = MutableContainer::getIdentifier($item);
+        $name = ItemHelper::getIdentifier($item);
         if (array_key_exists($name, $this->used)) {
             return;
         }

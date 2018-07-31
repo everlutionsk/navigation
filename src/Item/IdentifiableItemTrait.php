@@ -6,18 +6,13 @@ namespace Everlution\Navigation\Item;
 
 
 /**
- * Class AbstractItem
+ * Trait IdentifiableItemTrait
  *
  * @author Martin Adamik <martin.adamik@everlution.sk>
  */
-abstract class AbstractIdentifiableItem implements IdentifiableInterface
+trait IdentifiableItemTrait
 {
     private $identifier;
-
-    public function __construct(string $identifier)
-    {
-        $this->identifier = $identifier;
-    }
 
     public function getIdentifier(): string
     {
