@@ -33,6 +33,14 @@ class OrderedContainer implements ContainerInterface
             $this->items = $this->container->getItems();
         }
 
+        uasort($this->items, function($a, $b) {
+            if (!($a instanceof SortableInterface && $b instanceof SortableInterface)) {
+                return 0;
+            }
+
+            return $a->getOrder() <=> $b->getOrder();
+        });
+
         return $this->items;
     }
 
