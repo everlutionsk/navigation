@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Everlution\Navigation\Builder;
 
 use Everlution\Navigation\ContainerInterface;
+use Everlution\Navigation\GeneratorContainer;
 use Everlution\Navigation\Item\ItemInterface;
 use Everlution\Navigation\Item\NestableInterface;
 use Everlution\Navigation\Item\SortableInterface;
 use Everlution\Navigation\Helper\ItemHelper;
-use Everlution\Navigation\MutableContainer;
 use Everlution\Navigation\OrderedContainer;
 
 /**
@@ -35,7 +35,7 @@ class NavigationBuilder
     public function __construct(ContainerInterface $container, MatcherInterface $matcher)
     {
         $this->matcher = $matcher;
-        $this->container = new OrderedContainer($container);
+        $this->container = new OrderedContainer(new GeneratorContainer($container));
         $this->build();
     }
 
